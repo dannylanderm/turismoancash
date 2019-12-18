@@ -3,7 +3,8 @@
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
 	$usu_id = $_SESSION['auth.usu_id'];
-
+?>
+<?php
 	include_once '../../../entidades/actividades.php';
 	include_once '../../../includes/actividadesDAL.php';
 

@@ -1,17 +1,19 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('gal_upd', 'galeria/galeria.php');
-
+?>
+<?php
 	include_once '../../includes/galeriaDAL.php';
 	$gal_dal = new galeriaDAL();
 	$gal_id = GetNumericParam('gal_id');
 
 	$gal_row = $gal_dal->getByID($gal_id);
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
 ?>
@@ -24,9 +26,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtGalLugID'>Lugar turístico:</label></td>
-		<td><select class='form-control txt200' id='txtGalLugID' name='txtGalLugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtGalLugID' name='txtGalLugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $lug_list = $lug_dal->listarcbo($gal_row['gal_lug_id']);  foreach($lug_list as $row) { ?>
+			<?php $lug_list = $lug_dal->listarcbo($gal_row['gal_lug_id']); ?>
+			<?php foreach($lug_list as $row) { ?>
 				<option value='<?php echo $row['lug_id']; ?>'
 					<?php echo ($row['lug_id'] == $gal_row['lug_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['lug_nombre'];  ?>
@@ -36,13 +39,13 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtGalFoto'>Foto:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtGalFoto' name='txtGalFoto' value='<?php if ($gal_row) { echo htmlspecialchars($gal_row['gal_foto']); } ?>' maxlength='256' placeholder='Ingrese foto'/></td>
+		<td><input type='text' class='form-control txt250' id='txtGalFoto' name='txtGalFoto' value='<?php if ($gal_row) { echo htmlspecialchars($gal_row['gal_foto']); } ?>' maxlength='256' placeholder='Ingrese foto'/></td>
 	</tr>
 	<tr><td><label for='txtGalFotoDescripcion'>Foto descripcion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtGalFotoDescripcion' name='txtGalFotoDescripcion' value='<?php if ($gal_row) { echo htmlspecialchars($gal_row['gal_foto_descripcion']); } ?>' maxlength='500' placeholder='Ingrese foto descripcion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtGalFotoDescripcion' name='txtGalFotoDescripcion' value='<?php if ($gal_row) { echo htmlspecialchars($gal_row['gal_foto_descripcion']); } ?>' maxlength='500' placeholder='Ingrese foto descripcion'/></td>
 	</tr>
 	<tr hidden><td><label for='txtGalEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtGalEstado' name='txtGalEstado' value='<?php if ($gal_row) { echo $gal_row['gal_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtGalEstado' name='txtGalEstado' value='<?php if ($gal_row) { echo $gal_row['gal_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -91,15 +94,15 @@ function gal_validar() {
 	var gal_foto_descripcion = $(gal_upd).find('#txtGalFotoDescripcion').val();
 
 	if (!(isInteger(gal_lug_id) && gal_lug_id > 0)) {
-		showMessageWarning('Seleccione <b>lugar turístico</b>', 'txtGalLugID');
+		alert('Seleccione lugar turístico');
 		return false;
 	}
 	if (gal_foto == '') {
-		showMessageWarning('Ingrese una <b>foto</b> válida', 'txtGalFoto');
+		alert('Ingrese una foto válida');
 		return false;
 	}
 	if (gal_foto_descripcion == '') {
-		showMessageWarning('Ingrese una <b>foto descripcion</b> válida de galería', 'txtGalFotoDescripcion');
+		alert('Ingrese una foto descripcion válida de galería');
 		return false;
 	}
 	return true;

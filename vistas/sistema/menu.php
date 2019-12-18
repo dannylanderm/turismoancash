@@ -28,6 +28,14 @@
                     </ul>
                 </li>
                 <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href='#' onclick="load('tipoactividad');">Tipo de actividad</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
                     <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Seguridad
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">

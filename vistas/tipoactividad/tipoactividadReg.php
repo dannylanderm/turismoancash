@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tipoactiv_reg', 'tipoactividad/tipoactividad.php');
 ?>
 <form id='frmTipoactividadReg' method='post'>
@@ -15,7 +15,7 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTipoactivNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipoactivNombre' name='txtTipoactivNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipoactivNombre' name='txtTipoactivNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -54,7 +54,7 @@ function tipoactiv_validar() {
 	var tipoactiv_nombre = $(tipoactiv_reg).find('#txtTipoactivNombre').val();
 
 	if (tipoactiv_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de actividad', 'txtTipoactivNombre');
+		alert('Ingrese una nombre válida de tipo de actividad');
 		return false;
 	}
 	return true;

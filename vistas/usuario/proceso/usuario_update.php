@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../entidades/usuario.php';
 	include_once '../../../includes/usuarioDAL.php';
 
@@ -31,3 +32,4 @@
 function getField($campo, $row) {
 	return isset($_POST[$campo]) ? $_POST[$campo] : $row[$campo];
 }
+?>

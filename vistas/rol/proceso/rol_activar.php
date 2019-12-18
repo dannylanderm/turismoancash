@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../includes/rolDAL.php';
 
 	if (isset($_POST['rol_id'])){

@@ -11,10 +11,12 @@
 		$usu = $usuario->login($userForm, $passForm);
 		
 		if ($usu) {
-			$_SESSION['auth.usu_id']    = $usu['usu_id'];
+			$_SESSION['auth.usu_id']         = $usu['usu_id'];
 			$_SESSION['auth.usu_nombres']    = $usu['pers_nombres'];
 			$_SESSION['auth.usu_ap_paterno'] = $usu['pers_ap_paterno'];
 			$_SESSION['auth.usu_ap_materno'] = $usu['pers_ap_materno'];
+			
+			$usuario->updateFechaAcceso($usu['usu_id']);
 			
 			$usuarioSession->setCurrentUsuario($userForm);
 			echo 'Validando datos para ...'.$userForm;

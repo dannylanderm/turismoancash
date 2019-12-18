@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/cercaniaDAL.php';
 	$cerca_dal = new cercaniaDAL();
 	$b = GetStringParam('b');
 	$cerca_list = $cerca_dal->listar($b);
 ?>
-<table id='tblcercania' class='table table-responsive'>
+<table id='tblcercania' class='table table-responsive txt_left'>
 	<tr>
 		<th>Lugar turístico</th>
 		<th>Sitio</th>

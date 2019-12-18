@@ -1,19 +1,19 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/tipolugarDAL.php';
 	$tipolug_dal = new tipolugarDAL();
 	$b = GetStringParam('b');
 	$tipolug_list = $tipolug_dal->listar($b);
 ?>
-<table id='tbltipolugar' class='table table-responsive'>
+<table id='tbltipolugar' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
-		<th>Nombre</th>
-		<th>Categoría de lugar</th>
+		<th>Tipo de lugar</th>
+		<th>Categoría</th>
 		<th hidden>Estado</th>
 		<th>Editar</th>
 		<th>Borrar</th>
@@ -29,6 +29,7 @@
 	</tr>
 	<?php } ?>
 </table>
+<hr>
 <script>
 	function tipolug_editar(tipolug_id) {
 		performLoad('tipolugar/tipolugarUpd.php?tipolug_id=' + tipolug_id);

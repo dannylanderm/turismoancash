@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
 ?>
 <div id='frmTipositio' class='txt_center'>
@@ -19,7 +18,7 @@
 </div>
 <hr class='separator'/>
 <div class='listform_body bpad15'>
-	<div id='datos' class='centered pad8 rpad8' ></div>
+	<div id='datos' class='centered'></div>
 </div>
 </div>
 <script>

@@ -1,20 +1,23 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('rec_upd', 'recomendacion/recomendacion.php');
-
+?>
+<?php
 	include_once '../../includes/recomendacionDAL.php';
 	$rec_dal = new recomendacionDAL();
 	$rec_id = GetNumericParam('rec_id');
 
 	$rec_row = $rec_dal->getByID($rec_id);
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
-
+?>
+<?php
 	include_once '../../includes/tiporecomendacionDAL.php';
 	$tiporec_dal = new tiporecomendacionDAL();
 ?>
@@ -27,9 +30,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtRecLugID'>Lugar turístico:</label></td>
-		<td><select class='form-control txt200' id='txtRecLugID' name='txtRecLugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtRecLugID' name='txtRecLugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $lug_list = $lug_dal->listarcbo($rec_row['rec_lug_id']);  foreach($lug_list as $row) { ?>
+			<?php $lug_list = $lug_dal->listarcbo($rec_row['rec_lug_id']); ?>
+			<?php foreach($lug_list as $row) { ?>
 				<option value='<?php echo $row['lug_id']; ?>'
 					<?php echo ($row['lug_id'] == $rec_row['lug_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['lug_nombre'];  ?>
@@ -39,9 +43,10 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtRecTiporecID'>Tipo de recomendación:</label></td>
-		<td><select class='form-control txt200' id='txtRecTiporecID' name='txtRecTiporecID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtRecTiporecID' name='txtRecTiporecID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $tiporec_list = $tiporec_dal->listarcbo($rec_row['rec_tiporec_id']);  foreach($tiporec_list as $row) { ?>
+			<?php $tiporec_list = $tiporec_dal->listarcbo($rec_row['rec_tiporec_id']); ?>
+			<?php foreach($tiporec_list as $row) { ?>
 				<option value='<?php echo $row['tiporec_id']; ?>'
 					<?php echo ($row['tiporec_id'] == $rec_row['tiporec_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['tiporec_nombre'];  ?>
@@ -51,10 +56,10 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtRecDescripcion'>Descripcion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRecDescripcion' name='txtRecDescripcion' value='<?php if ($rec_row) { echo htmlspecialchars($rec_row['rec_descripcion']); } ?>' maxlength='50' placeholder='Ingrese descripcion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRecDescripcion' name='txtRecDescripcion' value='<?php if ($rec_row) { echo htmlspecialchars($rec_row['rec_descripcion']); } ?>' maxlength='50' placeholder='Ingrese descripcion'/></td>
 	</tr>
 	<tr hidden><td><label for='txtRecEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRecEstado' name='txtRecEstado' value='<?php if ($rec_row) { echo $rec_row['rec_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRecEstado' name='txtRecEstado' value='<?php if ($rec_row) { echo $rec_row['rec_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -103,15 +108,15 @@ function rec_validar() {
 	var rec_descripcion = $(rec_upd).find('#txtRecDescripcion').val();
 
 	if (!(isInteger(rec_lug_id) && rec_lug_id > 0)) {
-		showMessageWarning('Seleccione <b>lugar turístico</b>', 'txtRecLugID');
+		alert('Seleccione lugar turístico');
 		return false;
 	}
 	if (!(isInteger(rec_tiporec_id) && rec_tiporec_id > 0)) {
-		showMessageWarning('Seleccione <b>tipo de recomendación</b>', 'txtRecTiporecID');
+		alert('Seleccione tipo de recomendación');
 		return false;
 	}
 	if (rec_descripcion == '') {
-		showMessageWarning('Ingrese una <b>descripcion</b> válida de recomendación', 'txtRecDescripcion');
+		alert('Ingrese una descripcion válida de recomendación');
 		return false;
 	}
 	return true;

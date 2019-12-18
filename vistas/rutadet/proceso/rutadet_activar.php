@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../includes/rutadetDAL.php';
 
 	if (isset($_POST['rutad_ruta_id'], $_POST['rutad_lug_id'], $_POST['rutad_nro_ord'])){

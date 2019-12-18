@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tipositio_upd', 'tipositio/tipositio.php');
-
+?>
+<?php
 	include_once '../../includes/tipositioDAL.php';
 	$tipositio_dal = new tipositioDAL();
 	$tipositio_id = GetNumericParam('tipositio_id');
@@ -21,10 +22,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTipositioNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipositioNombre' name='txtTipositioNombre' value='<?php if ($tipositio_row) { echo htmlspecialchars($tipositio_row['tipositio_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipositioNombre' name='txtTipositioNombre' value='<?php if ($tipositio_row) { echo htmlspecialchars($tipositio_row['tipositio_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr hidden><td><label for='txtTipositioEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipositioEstado' name='txtTipositioEstado' value='<?php if ($tipositio_row) { echo $tipositio_row['tipositio_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipositioEstado' name='txtTipositioEstado' value='<?php if ($tipositio_row) { echo $tipositio_row['tipositio_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -67,7 +68,7 @@ function tipositio_validar() {
 	var tipositio_nombre = $(tipositio_upd).find('#txtTipositioNombre').val();
 
 	if (tipositio_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de sitio', 'txtTipositioNombre');
+		alert('Ingrese una nombre válida de tipo de sitio');
 		return false;
 	}
 	return true;

@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/ubigeoDAL.php';
 	$ubig_dal = new ubigeoDAL();
 	$b = GetStringParam('b');
 	$ubig_list = $ubig_dal->listar($b);
 ?>
-<table id='tblubigeo' class='table table-responsive'>
+<table id='tblubigeo' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Codigo</th>

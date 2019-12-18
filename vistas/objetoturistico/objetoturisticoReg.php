@@ -1,14 +1,16 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('obj_reg', 'objetoturistico/objetoturistico.php');
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
-
+?>
+<?php
 	include_once '../../includes/tipoobjetoturisticoDAL.php';
 	$tipoobj_dal = new tipoobjetoturisticoDAL();
 ?>
@@ -21,12 +23,13 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtObjNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtObjNombre' name='txtObjNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtObjNombre' name='txtObjNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr><td><label for='txtObjTipoobjID'>Tipo de objeto turístico:</label></td>
-		<td><select class='form-control txt200' id='txtObjTipoobjID' name='txtObjTipoobjID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtObjTipoobjID' name='txtObjTipoobjID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $tipoobj_list = $tipoobj_dal->listarcbo();  foreach($tipoobj_list as $row) { ?>
+			<?php $tipoobj_list = $tipoobj_dal->listarcbo(); ?>
+			<?php foreach($tipoobj_list as $row) { ?>
 				<option value='<?php echo $row['tipoobj_id']; ?>'>
 					<?php echo $row['tipoobj_nombre'];  ?>
 				</option>
@@ -35,18 +38,19 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtObjFoto'>Foto:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtObjFoto' name='txtObjFoto' maxlength='256' placeholder='Ingrese foto'/></td>
+		<td><input type='text' class='form-control txt250' id='txtObjFoto' name='txtObjFoto' maxlength='256' placeholder='Ingrese foto'/></td>
 	</tr>
 	<tr><td><label for='txtObjComentario'>Comentario:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtObjComentario' name='txtObjComentario' maxlength='500' placeholder='Ingrese comentario'/></td>
+		<td><input type='text' class='form-control txt250' id='txtObjComentario' name='txtObjComentario' maxlength='500' placeholder='Ingrese comentario'/></td>
 	</tr>
 	<tr><td><label for='txtObjFechaDatacion'>Fecha datacion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtObjFechaDatacion' name='txtObjFechaDatacion'  placeholder='Ingrese fecha datacion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtObjFechaDatacion' name='txtObjFechaDatacion'  placeholder='Ingrese fecha datacion'/></td>
 	</tr>
 	<tr><td><label for='txtObjLugID'>Lugar turístico:</label></td>
-		<td><select class='form-control txt200' id='txtObjLugID' name='txtObjLugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtObjLugID' name='txtObjLugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $lug_list = $lug_dal->listarcbo();  foreach($lug_list as $row) { ?>
+			<?php $lug_list = $lug_dal->listarcbo(); ?>
+			<?php foreach($lug_list as $row) { ?>
 				<option value='<?php echo $row['lug_id']; ?>'>
 					<?php echo $row['lug_nombre'];  ?>
 				</option>
@@ -55,7 +59,7 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtObjSituacion'>Situacion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtObjSituacion' name='txtObjSituacion'  placeholder='Ingrese situacion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtObjSituacion' name='txtObjSituacion'  placeholder='Ingrese situacion'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -112,31 +116,31 @@ function obj_validar() {
 	var obj_situacion = $(obj_reg).find('#txtObjSituacion').val();
 
 	if (obj_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de objeto turístico', 'txtObjNombre');
+		alert('Ingrese una nombre válida de objeto turístico');
 		return false;
 	}
 	if (!(isInteger(obj_tipoobj_id) && obj_tipoobj_id > 0)) {
-		showMessageWarning('Seleccione <b>tipo de objeto turístico</b>', 'txtObjTipoobjID');
+		alert('Seleccione tipo de objeto turístico');
 		return false;
 	}
 	if (obj_foto == '') {
-		showMessageWarning('Ingrese una <b>foto</b> válida', 'txtObjFoto');
+		alert('Ingrese una foto válida');
 		return false;
 	}
 	if (obj_comentario == '') {
-		showMessageWarning('Ingrese una <b>comentario</b> válida', 'txtObjComentario');
+		alert('Ingrese una comentario válida');
 		return false;
 	}
 	if (!isDate(obj_fecha_datacion)) {
-		showMessageWarning('Ingrese una <b>fecha datacion</b> válida', 'txtObjFechaDatacion');
+		alert('Ingrese una fecha datacion válida');
 		return false;
 	}
 	if (!(isInteger(obj_lug_id) && obj_lug_id > 0)) {
-		showMessageWarning('Seleccione <b>lugar turístico</b>', 'txtObjLugID');
+		alert('Seleccione lugar turístico');
 		return false;
 	}
 	if (!isTinyint(obj_situacion)) {
-		showMessageWarning('Ingrese un valor de <b>situacion</b> válido', 'txtObjSituacion');
+		alert('Ingrese un valor de situacion válido');
 		return false;
 	}
 	return true;

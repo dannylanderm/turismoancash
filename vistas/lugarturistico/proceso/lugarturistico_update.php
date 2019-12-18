@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../entidades/lugarturistico.php';
 	include_once '../../../includes/lugarturisticoDAL.php';
 
@@ -40,3 +41,4 @@
 function getField($campo, $row) {
 	return isset($_POST[$campo]) ? $_POST[$campo] : $row[$campo];
 }
+?>

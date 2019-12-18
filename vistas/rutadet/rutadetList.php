@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/rutadetDAL.php';
 	$rutad_dal = new rutadetDAL();
 	$b = GetStringParam('b');
 	$rutad_list = $rutad_dal->listar($b);
 ?>
-<table id='tblrutadet' class='table table-responsive'>
+<table id='tblrutadet' class='table table-responsive txt_left'>
 	<tr>
 		<th>Ruta</th>
 		<th>Lugar turístico</th>

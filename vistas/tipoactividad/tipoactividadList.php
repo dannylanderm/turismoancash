@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/tipoactividadDAL.php';
 	$tipoactiv_dal = new tipoactividadDAL();
 	$b = GetStringParam('b');
 	$tipoactiv_list = $tipoactiv_dal->listar($b);
 ?>
-<table id='tbltipoactividad' class='table table-responsive'>
+<table id='tbltipoactividad' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Nombre</th>
@@ -27,6 +27,7 @@
 	</tr>
 	<?php } ?>
 </table>
+<hr>
 <script>
 	function tipoactiv_editar(tipoactiv_id) {
 		performLoad('tipoactividad/tipoactividadUpd.php?tipoactiv_id=' + tipoactiv_id);

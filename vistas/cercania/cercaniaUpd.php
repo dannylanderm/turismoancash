@@ -1,21 +1,24 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('cerca_upd', 'cercania/cercania.php');
-
+?>
+<?php
 	include_once '../../includes/cercaniaDAL.php';
 	$cerca_dal = new cercaniaDAL();
 	$cerca_lug_id = GetNumericParam('cerca_lug_id');
 	$cerca_sitio_id = GetNumericParam('cerca_sitio_id');
 
 	$cerca_row = $cerca_dal->getByID($cerca_lug_id, $cerca_sitio_id);
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
-
+?>
+<?php
 	include_once '../../includes/sitioDAL.php';
 	$sitio_dal = new sitioDAL();
 ?>
@@ -28,9 +31,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtCercaLugID'>Lugar turístico:</label></td>
-		<td><select class='form-control txt200' id='txtCercaLugID' name='txtCercaLugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtCercaLugID' name='txtCercaLugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $lug_list = $lug_dal->listarcbo($cerca_row['cerca_lug_id']);  foreach($lug_list as $row) { ?>
+			<?php $lug_list = $lug_dal->listarcbo($cerca_row['cerca_lug_id']); ?>
+			<?php foreach($lug_list as $row) { ?>
 				<option value='<?php echo $row['lug_id']; ?>'
 					<?php echo ($row['lug_id'] == $cerca_row['lug_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['lug_nombre'];  ?>
@@ -40,9 +44,10 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtCercaSitioID'>Sitio:</label></td>
-		<td><select class='form-control txt200' id='txtCercaSitioID' name='txtCercaSitioID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtCercaSitioID' name='txtCercaSitioID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $sitio_list = $sitio_dal->listarcbo($cerca_row['cerca_sitio_id']);  foreach($sitio_list as $row) { ?>
+			<?php $sitio_list = $sitio_dal->listarcbo($cerca_row['cerca_sitio_id']); ?>
+			<?php foreach($sitio_list as $row) { ?>
 				<option value='<?php echo $row['sitio_id']; ?>'
 					<?php echo ($row['sitio_id'] == $cerca_row['sitio_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['sitio_nombre'];  ?>
@@ -52,7 +57,7 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtCercaDistancia'>Distancia:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCercaDistancia' name='txtCercaDistancia' value='<?php if ($cerca_row) { echo $cerca_row['cerca_distancia']; } ?>' maxlength='11' placeholder='Ingrese distancia'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCercaDistancia' name='txtCercaDistancia' value='<?php if ($cerca_row) { echo $cerca_row['cerca_distancia']; } ?>' maxlength='11' placeholder='Ingrese distancia'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -97,15 +102,15 @@ function cerca_validar() {
 	var cerca_distancia = $(cerca_upd).find('#txtCercaDistancia').val();
 
 	if (!(isInteger(cerca_lug_id) && cerca_lug_id > 0)) {
-		showMessageWarning('Seleccione <b>lugar turístico</b>', 'txtCercaLugID');
+		alert('Seleccione lugar turístico');
 		return false;
 	}
 	if (!(isInteger(cerca_sitio_id) && cerca_sitio_id > 0)) {
-		showMessageWarning('Seleccione <b>sitio</b>', 'txtCercaSitioID');
+		alert('Seleccione sitio');
 		return false;
 	}
 	if (!isNumeric(cerca_distancia)) {
-		showMessageWarning('Ingrese <b>distancia</b> válido', 'txtCercaDistancia');
+		alert('Ingrese distancia válido');
 		return false;
 	}
 	return true;

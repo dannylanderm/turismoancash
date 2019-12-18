@@ -1,23 +1,27 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('lug_upd', 'lugarturistico/lugarturistico.php');
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
 	$lug_id = GetNumericParam('lug_id');
 
 	$lug_row = $lug_dal->getByID($lug_id);
-
+?>
+<?php
 	include_once '../../includes/tipoingresoDAL.php';
 	$tipoing_dal = new tipoingresoDAL();
-
+?>
+<?php
 	include_once '../../includes/tipolugarDAL.php';
 	$tipolug_dal = new tipolugarDAL();
-
+?>
+<?php
 	include_once '../../includes/ubigeoDAL.php';
 	$ubig_dal = new ubigeoDAL();
 ?>
@@ -30,12 +34,13 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtLugNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugNombre' name='txtLugNombre' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_nombre']); } ?>' maxlength='100' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugNombre' name='txtLugNombre' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_nombre']); } ?>' maxlength='100' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr><td><label for='txtLugTipolugID'>Tipo de lugar:</label></td>
-		<td><select class='form-control txt200' id='txtLugTipolugID' name='txtLugTipolugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtLugTipolugID' name='txtLugTipolugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $tipolug_list = $tipolug_dal->listarcbo($lug_row['lug_tipolug_id']);  foreach($tipolug_list as $row) { ?>
+			<?php $tipolug_list = $tipolug_dal->listarcbo($lug_row['lug_tipolug_id']); ?>
+			<?php foreach($tipolug_list as $row) { ?>
 				<option value='<?php echo $row['tipolug_id']; ?>'
 					<?php echo ($row['tipolug_id'] == $lug_row['tipolug_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['tipolug_nombre'];  ?>
@@ -45,27 +50,28 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtLugLatitudGeo'>Latitud geo:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugLatitudGeo' name='txtLugLatitudGeo' value='<?php if ($lug_row) { echo $lug_row['lug_latitud_geo']; } ?>' maxlength='16' placeholder='Ingrese latitud geo'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugLatitudGeo' name='txtLugLatitudGeo' value='<?php if ($lug_row) { echo $lug_row['lug_latitud_geo']; } ?>' maxlength='16' placeholder='Ingrese latitud geo'/></td>
 	</tr>
 	<tr><td><label for='txtLugLongitudGeo'>Longitud geo:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugLongitudGeo' name='txtLugLongitudGeo' value='<?php if ($lug_row) { echo $lug_row['lug_longitud_geo']; } ?>' maxlength='16' placeholder='Ingrese longitud geo'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugLongitudGeo' name='txtLugLongitudGeo' value='<?php if ($lug_row) { echo $lug_row['lug_longitud_geo']; } ?>' maxlength='16' placeholder='Ingrese longitud geo'/></td>
 	</tr>
 	<tr><td><label for='txtLugAltitud'>Altitud:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugAltitud' name='txtLugAltitud' value='<?php if ($lug_row) { echo $lug_row['lug_altitud']; } ?>' maxlength='9' placeholder='Ingrese altitud'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugAltitud' name='txtLugAltitud' value='<?php if ($lug_row) { echo $lug_row['lug_altitud']; } ?>' maxlength='9' placeholder='Ingrese altitud'/></td>
 	</tr>
 	<tr><td><label for='txtLugTamanioArea'>Tamanio area:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugTamanioArea' name='txtLugTamanioArea' value='<?php if ($lug_row) { echo $lug_row['lug_tamanio_area']; } ?>' maxlength='9' placeholder='Ingrese tamanio area'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugTamanioArea' name='txtLugTamanioArea' value='<?php if ($lug_row) { echo $lug_row['lug_tamanio_area']; } ?>' maxlength='9' placeholder='Ingrese tamanio area'/></td>
 	</tr>
 	<tr><td><label for='txtLugFoto'>Foto:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugFoto' name='txtLugFoto' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_foto']); } ?>' maxlength='256' placeholder='Ingrese foto'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugFoto' name='txtLugFoto' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_foto']); } ?>' maxlength='256' placeholder='Ingrese foto'/></td>
 	</tr>
 	<tr><td><label for='txtLugDescripcion'>Descripcion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugDescripcion' name='txtLugDescripcion' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_descripcion']); } ?>' maxlength='400' placeholder='Ingrese descripcion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugDescripcion' name='txtLugDescripcion' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_descripcion']); } ?>' maxlength='400' placeholder='Ingrese descripcion'/></td>
 	</tr>
 	<tr><td><label for='txtLugUbigID'>Ubigeo:</label></td>
-		<td><select class='form-control txt200' id='txtLugUbigID' name='txtLugUbigID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtLugUbigID' name='txtLugUbigID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $ubig_list = $ubig_dal->listarcbo($lug_row['lug_ubig_id']);  foreach($ubig_list as $row) { ?>
+			<?php $ubig_list = $ubig_dal->listarcbo($lug_row['lug_ubig_id']); ?>
+			<?php foreach($ubig_list as $row) { ?>
 				<option value='<?php echo $row['ubig_id']; ?>'
 					<?php echo ($row['ubig_id'] == $lug_row['ubig_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['ubig_nombre'];  ?>
@@ -75,12 +81,13 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtLugDireccionRef'>Direccion ref:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugDireccionRef' name='txtLugDireccionRef' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_direccion_ref']); } ?>' maxlength='100' placeholder='Ingrese direccion ref'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugDireccionRef' name='txtLugDireccionRef' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_direccion_ref']); } ?>' maxlength='100' placeholder='Ingrese direccion ref'/></td>
 	</tr>
 	<tr><td><label for='txtLugTipoingID'>Tipo de ingreso:</label></td>
-		<td><select class='form-control txt200' id='txtLugTipoingID' name='txtLugTipoingID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtLugTipoingID' name='txtLugTipoingID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $tipoing_list = $tipoing_dal->listarcbo($lug_row['lug_tipoing_id']);  foreach($tipoing_list as $row) { ?>
+			<?php $tipoing_list = $tipoing_dal->listarcbo($lug_row['lug_tipoing_id']); ?>
+			<?php foreach($tipoing_list as $row) { ?>
 				<option value='<?php echo $row['tipoing_id']; ?>'
 					<?php echo ($row['tipoing_id'] == $lug_row['tipoing_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['tipoing_nombre'];  ?>
@@ -90,16 +97,16 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtLugCalificacion'>Calificacion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugCalificacion' name='txtLugCalificacion' value='<?php if ($lug_row) { echo $lug_row['lug_calificacion']; } ?>'  placeholder='Ingrese calificacion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugCalificacion' name='txtLugCalificacion' value='<?php if ($lug_row) { echo $lug_row['lug_calificacion']; } ?>'  placeholder='Ingrese calificacion'/></td>
 	</tr>
 	<tr><td><label for='txtLugSituacion'>Situacion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugSituacion' name='txtLugSituacion' value='<?php if ($lug_row) { echo $lug_row['lug_situacion']; } ?>'  placeholder='Ingrese situacion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugSituacion' name='txtLugSituacion' value='<?php if ($lug_row) { echo $lug_row['lug_situacion']; } ?>'  placeholder='Ingrese situacion'/></td>
 	</tr>
 	<tr><td><label for='txtLugResenia'>Resenia:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugResenia' name='txtLugResenia' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_resenia']); } ?>' maxlength='500' placeholder='Ingrese resenia'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugResenia' name='txtLugResenia' value='<?php if ($lug_row) { echo htmlspecialchars($lug_row['lug_resenia']); } ?>' maxlength='500' placeholder='Ingrese resenia'/></td>
 	</tr>
 	<tr hidden><td><label for='txtLugEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtLugEstado' name='txtLugEstado' value='<?php if ($lug_row) { echo $lug_row['lug_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtLugEstado' name='txtLugEstado' value='<?php if ($lug_row) { echo $lug_row['lug_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -181,59 +188,59 @@ function lug_validar() {
 	var lug_resenia = $(lug_upd).find('#txtLugResenia').val();
 
 	if (lug_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de lugar turístico', 'txtLugNombre');
+		alert('Ingrese una nombre válida de lugar turístico');
 		return false;
 	}
 	if (!(isInteger(lug_tipolug_id) && lug_tipolug_id > 0)) {
-		showMessageWarning('Seleccione <b>tipo de lugar</b>', 'txtLugTipolugID');
+		alert('Seleccione tipo de lugar');
 		return false;
 	}
 	if (!isNumeric(lug_latitud_geo)) {
-		showMessageWarning('Ingrese <b>latitud geo</b> válido', 'txtLugLatitudGeo');
+		alert('Ingrese latitud geo válido');
 		return false;
 	}
 	if (!isNumeric(lug_longitud_geo)) {
-		showMessageWarning('Ingrese <b>longitud geo</b> válido', 'txtLugLongitudGeo');
+		alert('Ingrese longitud geo válido');
 		return false;
 	}
 	if (!isNumeric(lug_altitud)) {
-		showMessageWarning('Ingrese <b>altitud</b> válido', 'txtLugAltitud');
+		alert('Ingrese altitud válido');
 		return false;
 	}
 	if (!isNumeric(lug_tamanio_area)) {
-		showMessageWarning('Ingrese <b>tamanio area</b> válido', 'txtLugTamanioArea');
+		alert('Ingrese tamanio area válido');
 		return false;
 	}
 	if (lug_foto == '') {
-		showMessageWarning('Ingrese una <b>foto</b> válida', 'txtLugFoto');
+		alert('Ingrese una foto válida');
 		return false;
 	}
 	if (lug_descripcion == '') {
-		showMessageWarning('Ingrese una <b>descripcion</b> válida de lugar turístico', 'txtLugDescripcion');
+		alert('Ingrese una descripcion válida de lugar turístico');
 		return false;
 	}
 	if (!(isInteger(lug_ubig_id) && lug_ubig_id > 0)) {
-		showMessageWarning('Seleccione <b>ubigeo</b>', 'txtLugUbigID');
+		alert('Seleccione ubigeo');
 		return false;
 	}
 	if (lug_direccion_ref == '') {
-		showMessageWarning('Ingrese una <b>direccion ref</b> válida', 'txtLugDireccionRef');
+		alert('Ingrese una direccion ref válida');
 		return false;
 	}
 	if (!(isInteger(lug_tipoing_id) && lug_tipoing_id > 0)) {
-		showMessageWarning('Seleccione <b>tipo de ingreso</b>', 'txtLugTipoingID');
+		alert('Seleccione tipo de ingreso');
 		return false;
 	}
 	if (!isTinyint(lug_calificacion)) {
-		showMessageWarning('Ingrese un valor de <b>calificacion</b> válido', 'txtLugCalificacion');
+		alert('Ingrese un valor de calificacion válido');
 		return false;
 	}
 	if (!isTinyint(lug_situacion)) {
-		showMessageWarning('Ingrese un valor de <b>situacion</b> válido', 'txtLugSituacion');
+		alert('Ingrese un valor de situacion válido');
 		return false;
 	}
 	if (lug_resenia == '') {
-		showMessageWarning('Ingrese una <b>resenia</b> válida', 'txtLugResenia');
+		alert('Ingrese una resenia válida');
 		return false;
 	}
 	return true;

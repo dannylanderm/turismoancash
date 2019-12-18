@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/actividadesDAL.php';
 	$activ_dal = new actividadesDAL();
 	$b = GetStringParam('b');
 	$activ_list = $activ_dal->listar($b);
 ?>
-<table id='tblactividades' class='table table-responsive'>
+<table id='tblactividades' class='table table-responsive txt_left'>
 	<tr>
 		<th>Lugar turístico</th>
 		<th>Tipo de actividad</th>

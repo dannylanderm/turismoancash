@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tipoing_upd', 'tipoingreso/tipoingreso.php');
-
+?>
+<?php
 	include_once '../../includes/tipoingresoDAL.php';
 	$tipoing_dal = new tipoingresoDAL();
 	$tipoing_id = GetNumericParam('tipoing_id');
@@ -21,10 +22,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTipoingNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipoingNombre' name='txtTipoingNombre' value='<?php if ($tipoing_row) { echo htmlspecialchars($tipoing_row['tipoing_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipoingNombre' name='txtTipoingNombre' value='<?php if ($tipoing_row) { echo htmlspecialchars($tipoing_row['tipoing_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr hidden><td><label for='txtTipoingEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipoingEstado' name='txtTipoingEstado' value='<?php if ($tipoing_row) { echo $tipoing_row['tipoing_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipoingEstado' name='txtTipoingEstado' value='<?php if ($tipoing_row) { echo $tipoing_row['tipoing_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -67,7 +68,7 @@ function tipoing_validar() {
 	var tipoing_nombre = $(tipoing_upd).find('#txtTipoingNombre').val();
 
 	if (tipoing_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de ingreso', 'txtTipoingNombre');
+		alert('Ingrese una nombre válida de tipo de ingreso');
 		return false;
 	}
 	return true;

@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/usuarioDAL.php';
 	$usu_dal = new usuarioDAL();
 	$b = GetStringParam('b');
 	$usu_list = $usu_dal->listar($b);
 ?>
-<table id='tblusuario' class='table table-responsive'>
+<table id='tblusuario' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Persona</th>
@@ -18,8 +18,8 @@
 		<th>Fecha acceso</th>
 		<th hidden>Registrado</th>
 		<th hidden>Estado</th>
-		<th>Editar</th>
-		<th>Borrar</th>
+		<th hidden>Editar</th>
+		<th hidden>Borrar</th>
 	</tr>
 	<?php foreach($usu_list as $row) { ?>
 	<tr>
@@ -30,8 +30,8 @@
 		<td class='txt_center'><?php echo formatDate($row['usu_fecha_acceso']); ?></td>
 		<td class='txt_center' hidden><?php echo $row['usu_fecha_reg']; ?></td>
 		<td hidden><?php echo $row['usu_estado']; ?></td>
-		<td class='txt_center'><a href='#' class='btn btn-info' onclick="usu_editar('<?php echo $row['usu_id']; ?>');"><img src='../resources/img/edit.png' style='width: 16px;'></a></td>
-		<td class='txt_center'><a href='#'  class='btn btn-danger' onclick="usu_borrar('<?php echo $row['usu_id']; ?>');"><img src='../resources/img/delete.png' style='width: 16px;'></a></td>
+		<td hidden class='txt_center'><a href='#' class='btn btn-info' onclick="usu_editar('<?php echo $row['usu_id']; ?>');"><img src='../resources/img/edit.png' style='width: 16px;'></a></td>
+		<td hidden class='txt_center'><a href='#'  class='btn btn-danger' onclick="usu_borrar('<?php echo $row['usu_id']; ?>');"><img src='../resources/img/delete.png' style='width: 16px;'></a></td>
 	</tr>
 	<?php } ?>
 </table>

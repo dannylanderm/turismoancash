@@ -1,20 +1,23 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('usu_upd', 'usuario/usuario.php');
-
+?>
+<?php
 	include_once '../../includes/usuarioDAL.php';
 	$usu_dal = new usuarioDAL();
 	$usu_id = GetNumericParam('usu_id');
 
 	$usu_row = $usu_dal->getByID($usu_id);
-
+?>
+<?php
 	include_once '../../includes/personaDAL.php';
 	$pers_dal = new personaDAL();
-
+?>
+<?php
 	include_once '../../includes/rolDAL.php';
 	$rol_dal = new rolDAL();
 ?>
@@ -27,9 +30,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtUsuPersID'>Persona:</label></td>
-		<td><select class='form-control txt200' id='txtUsuPersID' name='txtUsuPersID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtUsuPersID' name='txtUsuPersID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $pers_list = $pers_dal->listarcbo($usu_row['usu_pers_id']);  foreach($pers_list as $row) { ?>
+			<?php $pers_list = $pers_dal->listarcbo($usu_row['usu_pers_id']); ?>
+			<?php foreach($pers_list as $row) { ?>
 				<option value='<?php echo $row['pers_id']; ?>'
 					<?php echo ($row['pers_id'] == $usu_row['pers_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['pers_nombres'];  ?>
@@ -39,15 +43,16 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtUsuNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUsuNombre' name='txtUsuNombre' value='<?php if ($usu_row) { echo htmlspecialchars($usu_row['usu_nombre']); } ?>' maxlength='30' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUsuNombre' name='txtUsuNombre' value='<?php if ($usu_row) { echo htmlspecialchars($usu_row['usu_nombre']); } ?>' maxlength='30' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr hidden><td><label for='txtUsuContrasena'>Contrasena:</label></td>
 		<td><input type='password' id='txtUsuContrasena' name='txtUsuContrasena' value='' maxlength='32' placeholder='Ingrese contrasena'/></td>
 	</tr>
 	<tr><td><label for='txtUsuRolID'>Rol:</label></td>
-		<td><select class='form-control txt200' id='txtUsuRolID' name='txtUsuRolID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtUsuRolID' name='txtUsuRolID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $rol_list = $rol_dal->listarcbo($usu_row['usu_rol_id']);  foreach($rol_list as $row) { ?>
+			<?php $rol_list = $rol_dal->listarcbo($usu_row['usu_rol_id']); ?>
+			<?php foreach($rol_list as $row) { ?>
 				<option value='<?php echo $row['rol_id']; ?>'
 					<?php echo ($row['rol_id'] == $usu_row['rol_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['rol_nombre'];  ?>
@@ -57,10 +62,10 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtUsuFechaAcceso'>Fecha acceso:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUsuFechaAcceso' name='txtUsuFechaAcceso' value='<?php if ($usu_row) { echo formatDate($usu_row['usu_fecha_acceso']); } ?>'  placeholder='Ingrese fecha acceso'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUsuFechaAcceso' name='txtUsuFechaAcceso' value='<?php if ($usu_row) { echo formatDate($usu_row['usu_fecha_acceso']); } ?>'  placeholder='Ingrese fecha acceso'/></td>
 	</tr>
 	<tr hidden><td><label for='txtUsuEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUsuEstado' name='txtUsuEstado' value='<?php if ($usu_row) { echo $usu_row['usu_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUsuEstado' name='txtUsuEstado' value='<?php if ($usu_row) { echo $usu_row['usu_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -115,23 +120,23 @@ function usu_validar() {
 	var usu_fecha_acceso = $(usu_upd).find('#txtUsuFechaAcceso').val();
 
 	if (!(isInteger(usu_pers_id) && usu_pers_id > 0)) {
-		showMessageWarning('Seleccione <b>persona</b>', 'txtUsuPersID');
+		alert('Seleccione persona');
 		return false;
 	}
 	if (usu_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de usuario', 'txtUsuNombre');
+		alert('Ingrese una nombre válida de usuario');
 		return false;
 	}
 	if (usu_contrasena == '') {
-		showMessageWarning('Ingrese una <b>contrasena</b> válida', 'txtUsuContrasena');
+		alert('Ingrese una contrasena válida');
 		return false;
 	}
 	if (!(isInteger(usu_rol_id) && usu_rol_id > 0)) {
-		showMessageWarning('Seleccione <b>rol</b>', 'txtUsuRolID');
+		alert('Seleccione rol');
 		return false;
 	}
 	if (!isDate(usu_fecha_acceso)) {
-		showMessageWarning('Ingrese una <b>fecha acceso</b> válida', 'txtUsuFechaAcceso');
+		alert('Ingrese una fecha acceso válida');
 		return false;
 	}
 	return true;

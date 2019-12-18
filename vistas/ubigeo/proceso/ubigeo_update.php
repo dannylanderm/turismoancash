@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../entidades/ubigeo.php';
 	include_once '../../../includes/ubigeoDAL.php';
 

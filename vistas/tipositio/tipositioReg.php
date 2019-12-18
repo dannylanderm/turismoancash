@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tipositio_reg', 'tipositio/tipositio.php');
 ?>
 <form id='frmTipositioReg' method='post'>
@@ -15,7 +15,7 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTipositioNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipositioNombre' name='txtTipositioNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipositioNombre' name='txtTipositioNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -54,7 +54,7 @@ function tipositio_validar() {
 	var tipositio_nombre = $(tipositio_reg).find('#txtTipositioNombre').val();
 
 	if (tipositio_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de sitio', 'txtTipositioNombre');
+		alert('Ingrese una nombre válida de tipo de sitio');
 		return false;
 	}
 	return true;

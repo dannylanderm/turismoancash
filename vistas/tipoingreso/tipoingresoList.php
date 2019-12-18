@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/tipoingresoDAL.php';
 	$tipoing_dal = new tipoingresoDAL();
 	$b = GetStringParam('b');
 	$tipoing_list = $tipoing_dal->listar($b);
 ?>
-<table id='tbltipoingreso' class='table table-responsive'>
+<table id='tbltipoingreso' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Nombre</th>

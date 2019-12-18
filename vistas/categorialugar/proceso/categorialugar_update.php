@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../entidades/categorialugar.php';
 	include_once '../../../includes/categorialugarDAL.php';
 
@@ -16,6 +17,7 @@
 
 		$catlug->catlug_id	 = $catlug_id;
 		$catlug->nombre	 = getField('catlug_nombre', $catlug_row);
+		$catlug->descripcion	 = getField('catlug_descripcion', $catlug_row);
 		$catlug->estado	 = getField('catlug_estado', $catlug_row);
 
 		$catlug_rs = $catlug_dal->actualizar($catlug);

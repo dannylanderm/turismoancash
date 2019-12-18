@@ -38,8 +38,7 @@
 					'$usu->pers_id',
 					'$usu->nombre',
 					'$usu->contrasena',
-					'$usu->rol_id',
-					'$usu->fecha_acceso');");
+					'$usu->rol_id');");
 			
 			$usu_id = $rs ? $mysql->getLastID() : 0;
 			$mysql->desconectar();
@@ -56,6 +55,12 @@
 					'$usu->contrasena',
 					'$usu->rol_id',
 					'$usu->fecha_acceso');");
+			return $rs;
+		}
+		
+		public function updateFechaAcceso($usu_id) {
+			$mysql = new Conexion();
+			$rs    = $mysql->ejecutar("UPDATE usuario SET usu_fecha_acceso = now() WHERE usu_id = '$usu_id';");
 			return $rs;
 		}
 		

@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../includes/tipoingresoDAL.php';
 
 	if (isset($_POST['tipoing_id'])){

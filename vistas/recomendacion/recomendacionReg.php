@@ -1,14 +1,16 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('rec_reg', 'recomendacion/recomendacion.php');
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
-
+?>
+<?php
 	include_once '../../includes/tiporecomendacionDAL.php';
 	$tiporec_dal = new tiporecomendacionDAL();
 ?>
@@ -21,9 +23,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtRecLugID'>Lugar turístico:</label></td>
-		<td><select class='form-control txt200' id='txtRecLugID' name='txtRecLugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtRecLugID' name='txtRecLugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $lug_list = $lug_dal->listarcbo();  foreach($lug_list as $row) { ?>
+			<?php $lug_list = $lug_dal->listarcbo(); ?>
+			<?php foreach($lug_list as $row) { ?>
 				<option value='<?php echo $row['lug_id']; ?>'>
 					<?php echo $row['lug_nombre'];  ?>
 				</option>
@@ -32,9 +35,10 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtRecTiporecID'>Tipo de recomendación:</label></td>
-		<td><select class='form-control txt200' id='txtRecTiporecID' name='txtRecTiporecID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtRecTiporecID' name='txtRecTiporecID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $tiporec_list = $tiporec_dal->listarcbo();  foreach($tiporec_list as $row) { ?>
+			<?php $tiporec_list = $tiporec_dal->listarcbo(); ?>
+			<?php foreach($tiporec_list as $row) { ?>
 				<option value='<?php echo $row['tiporec_id']; ?>'>
 					<?php echo $row['tiporec_nombre'];  ?>
 				</option>
@@ -43,7 +47,7 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtRecDescripcion'>Descripcion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRecDescripcion' name='txtRecDescripcion' maxlength='50' placeholder='Ingrese descripcion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRecDescripcion' name='txtRecDescripcion' maxlength='50' placeholder='Ingrese descripcion'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -88,15 +92,15 @@ function rec_validar() {
 	var rec_descripcion = $(rec_reg).find('#txtRecDescripcion').val();
 
 	if (!(isInteger(rec_lug_id) && rec_lug_id > 0)) {
-		showMessageWarning('Seleccione <b>lugar turístico</b>', 'txtRecLugID');
+		alert('Seleccione lugar turístico');
 		return false;
 	}
 	if (!(isInteger(rec_tiporec_id) && rec_tiporec_id > 0)) {
-		showMessageWarning('Seleccione <b>tipo de recomendación</b>', 'txtRecTiporecID');
+		alert('Seleccione tipo de recomendación');
 		return false;
 	}
 	if (rec_descripcion == '') {
-		showMessageWarning('Ingrese una <b>descripcion</b> válida de recomendación', 'txtRecDescripcion');
+		alert('Ingrese una descripcion válida de recomendación');
 		return false;
 	}
 	return true;

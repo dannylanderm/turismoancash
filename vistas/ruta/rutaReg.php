@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('ruta_reg', 'ruta/ruta.php');
 ?>
 <form id='frmRutaReg' method='post'>
@@ -15,7 +15,7 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtRutaDescripcion'>Descripcion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRutaDescripcion' name='txtRutaDescripcion' maxlength='100' placeholder='Ingrese descripcion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRutaDescripcion' name='txtRutaDescripcion' maxlength='100' placeholder='Ingrese descripcion'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -54,7 +54,7 @@ function ruta_validar() {
 	var ruta_descripcion = $(ruta_reg).find('#txtRutaDescripcion').val();
 
 	if (ruta_descripcion == '') {
-		showMessageWarning('Ingrese una <b>descripcion</b> válida de ruta', 'txtRutaDescripcion');
+		alert('Ingrese una descripcion válida de ruta');
 		return false;
 	}
 	return true;

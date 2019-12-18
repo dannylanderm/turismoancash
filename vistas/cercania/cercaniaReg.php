@@ -1,14 +1,16 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('cerca_reg', 'cercania/cercania.php');
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
-
+?>
+<?php
 	include_once '../../includes/sitioDAL.php';
 	$sitio_dal = new sitioDAL();
 ?>
@@ -21,9 +23,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtCercaLugID'>Lugar turístico:</label></td>
-		<td><select class='form-control txt200' id='txtCercaLugID' name='txtCercaLugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtCercaLugID' name='txtCercaLugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $lug_list = $lug_dal->listarcbo();  foreach($lug_list as $row) { ?>
+			<?php $lug_list = $lug_dal->listarcbo(); ?>
+			<?php foreach($lug_list as $row) { ?>
 				<option value='<?php echo $row['lug_id']; ?>'>
 					<?php echo $row['lug_nombre'];  ?>
 				</option>
@@ -32,9 +35,10 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtCercaSitioID'>Sitio:</label></td>
-		<td><select class='form-control txt200' id='txtCercaSitioID' name='txtCercaSitioID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtCercaSitioID' name='txtCercaSitioID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $sitio_list = $sitio_dal->listarcbo();  foreach($sitio_list as $row) { ?>
+			<?php $sitio_list = $sitio_dal->listarcbo(); ?>
+			<?php foreach($sitio_list as $row) { ?>
 				<option value='<?php echo $row['sitio_id']; ?>'>
 					<?php echo $row['sitio_nombre'];  ?>
 				</option>
@@ -43,7 +47,7 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtCercaDistancia'>Distancia:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCercaDistancia' name='txtCercaDistancia' maxlength='11' placeholder='Ingrese distancia'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCercaDistancia' name='txtCercaDistancia' maxlength='11' placeholder='Ingrese distancia'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -88,15 +92,15 @@ function cerca_validar() {
 	var cerca_distancia = $(cerca_reg).find('#txtCercaDistancia').val();
 
 	if (!(isInteger(cerca_lug_id) && cerca_lug_id > 0)) {
-		showMessageWarning('Seleccione <b>lugar turístico</b>', 'txtCercaLugID');
+		alert('Seleccione lugar turístico');
 		return false;
 	}
 	if (!(isInteger(cerca_sitio_id) && cerca_sitio_id > 0)) {
-		showMessageWarning('Seleccione <b>sitio</b>', 'txtCercaSitioID');
+		alert('Seleccione sitio');
 		return false;
 	}
 	if (!isNumeric(cerca_distancia)) {
-		showMessageWarning('Ingrese <b>distancia</b> válido', 'txtCercaDistancia');
+		alert('Ingrese distancia válido');
 		return false;
 	}
 	return true;

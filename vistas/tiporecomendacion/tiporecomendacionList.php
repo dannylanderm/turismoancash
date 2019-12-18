@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/tiporecomendacionDAL.php';
 	$tiporec_dal = new tiporecomendacionDAL();
 	$b = GetStringParam('b');
 	$tiporec_list = $tiporec_dal->listar($b);
 ?>
-<table id='tbltiporecomendacion' class='table table-responsive'>
+<table id='tbltiporecomendacion' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Nombre</th>

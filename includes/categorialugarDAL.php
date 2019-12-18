@@ -28,7 +28,8 @@
 			$rs = $mysql->ejecutar("
 				CALL pa_Categorialugar_insert(
 					@catlug_id,
-					'$catlug->nombre');");
+					'$catlug->nombre',
+					'$catlug->descripcion');");
 
 			$catlug_id = $rs ? $mysql->getLastID() : 0;
 			$mysql->desconectar();
@@ -40,7 +41,8 @@
 			$rs = $mysql->ejecutar("
 				CALL pa_Categorialugar_update(
 					'$catlug->catlug_id',
-					'$catlug->nombre');");
+					'$catlug->nombre',
+					'$catlug->descripcion');");
 			return $rs;
 		}
 

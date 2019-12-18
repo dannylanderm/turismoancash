@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tiporec_reg', 'tiporecomendacion/tiporecomendacion.php');
 ?>
 <form id='frmTiporecomendacionReg' method='post'>
@@ -15,7 +15,7 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTiporecNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTiporecNombre' name='txtTiporecNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTiporecNombre' name='txtTiporecNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -54,7 +54,7 @@ function tiporec_validar() {
 	var tiporec_nombre = $(tiporec_reg).find('#txtTiporecNombre').val();
 
 	if (tiporec_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de recomendación', 'txtTiporecNombre');
+		alert('Ingrese una nombre válida de tipo de recomendación');
 		return false;
 	}
 	return true;

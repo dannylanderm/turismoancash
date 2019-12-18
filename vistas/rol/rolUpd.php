@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('rol_upd', 'rol/rol.php');
-
+?>
+<?php
 	include_once '../../includes/rolDAL.php';
 	$rol_dal = new rolDAL();
 	$rol_id = GetNumericParam('rol_id');
@@ -21,10 +22,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtRolNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRolNombre' name='txtRolNombre' value='<?php if ($rol_row) { echo htmlspecialchars($rol_row['rol_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRolNombre' name='txtRolNombre' value='<?php if ($rol_row) { echo htmlspecialchars($rol_row['rol_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr hidden><td><label for='txtRolEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRolEstado' name='txtRolEstado' value='<?php if ($rol_row) { echo $rol_row['rol_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRolEstado' name='txtRolEstado' value='<?php if ($rol_row) { echo $rol_row['rol_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -67,7 +68,7 @@ function rol_validar() {
 	var rol_nombre = $(rol_upd).find('#txtRolNombre').val();
 
 	if (rol_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de rol', 'txtRolNombre');
+		alert('Ingrese una nombre válida de rol');
 		return false;
 	}
 	return true;

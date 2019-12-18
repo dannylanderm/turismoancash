@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../includes/actividadesDAL.php';
 
 	if (isset($_POST['activ_lug_id'], $_POST['activ_tipoactiv_id'])){

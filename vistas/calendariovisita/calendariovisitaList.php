@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/calendariovisitaDAL.php';
 	$calend_dal = new calendariovisitaDAL();
 	$b = GetStringParam('b');
 	$calend_list = $calend_dal->listar($b);
 ?>
-<table id='tblcalendariovisita' class='table table-responsive'>
+<table id='tblcalendariovisita' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Lugar turístico</th>

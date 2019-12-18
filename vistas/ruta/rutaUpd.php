@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('ruta_upd', 'ruta/ruta.php');
-
+?>
+<?php
 	include_once '../../includes/rutaDAL.php';
 	$ruta_dal = new rutaDAL();
 	$ruta_id = GetNumericParam('ruta_id');
@@ -21,10 +22,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtRutaDescripcion'>Descripcion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRutaDescripcion' name='txtRutaDescripcion' value='<?php if ($ruta_row) { echo htmlspecialchars($ruta_row['ruta_descripcion']); } ?>' maxlength='100' placeholder='Ingrese descripcion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRutaDescripcion' name='txtRutaDescripcion' value='<?php if ($ruta_row) { echo htmlspecialchars($ruta_row['ruta_descripcion']); } ?>' maxlength='100' placeholder='Ingrese descripcion'/></td>
 	</tr>
 	<tr hidden><td><label for='txtRutaEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtRutaEstado' name='txtRutaEstado' value='<?php if ($ruta_row) { echo $ruta_row['ruta_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtRutaEstado' name='txtRutaEstado' value='<?php if ($ruta_row) { echo $ruta_row['ruta_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -67,7 +68,7 @@ function ruta_validar() {
 	var ruta_descripcion = $(ruta_upd).find('#txtRutaDescripcion').val();
 
 	if (ruta_descripcion == '') {
-		showMessageWarning('Ingrese una <b>descripcion</b> válida de ruta', 'txtRutaDescripcion');
+		alert('Ingrese una descripcion válida de ruta');
 		return false;
 	}
 	return true;

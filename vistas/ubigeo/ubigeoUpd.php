@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('ubig_upd', 'ubigeo/ubigeo.php');
-
+?>
+<?php
 	include_once '../../includes/ubigeoDAL.php';
 	$ubig_dal = new ubigeoDAL();
 	$ubig_id = GetNumericParam('ubig_id');
@@ -21,22 +22,22 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtUbigCodigo'>Codigo:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUbigCodigo' name='txtUbigCodigo' value='<?php if ($ubig_row) { echo htmlspecialchars($ubig_row['ubig_codigo']); } ?>' maxlength='6' placeholder='Ingrese codigo'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUbigCodigo' name='txtUbigCodigo' value='<?php if ($ubig_row) { echo htmlspecialchars($ubig_row['ubig_codigo']); } ?>' maxlength='6' placeholder='Ingrese codigo'/></td>
 	</tr>
 	<tr><td><label for='txtUbigDptoCod'>Dpto cod:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUbigDptoCod' name='txtUbigDptoCod' value='<?php if ($ubig_row) { echo $ubig_row['ubig_dpto_cod']; } ?>' maxlength='10' placeholder='Ingrese dpto cod'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUbigDptoCod' name='txtUbigDptoCod' value='<?php if ($ubig_row) { echo $ubig_row['ubig_dpto_cod']; } ?>' maxlength='10' placeholder='Ingrese dpto cod'/></td>
 	</tr>
 	<tr><td><label for='txtUbigProvCod'>Prov cod:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUbigProvCod' name='txtUbigProvCod' value='<?php if ($ubig_row) { echo $ubig_row['ubig_prov_cod']; } ?>' maxlength='10' placeholder='Ingrese prov cod'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUbigProvCod' name='txtUbigProvCod' value='<?php if ($ubig_row) { echo $ubig_row['ubig_prov_cod']; } ?>' maxlength='10' placeholder='Ingrese prov cod'/></td>
 	</tr>
 	<tr><td><label for='txtUbigDistCod'>Dist cod:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUbigDistCod' name='txtUbigDistCod' value='<?php if ($ubig_row) { echo $ubig_row['ubig_dist_cod']; } ?>' maxlength='10' placeholder='Ingrese dist cod'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUbigDistCod' name='txtUbigDistCod' value='<?php if ($ubig_row) { echo $ubig_row['ubig_dist_cod']; } ?>' maxlength='10' placeholder='Ingrese dist cod'/></td>
 	</tr>
 	<tr><td><label for='txtUbigNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUbigNombre' name='txtUbigNombre' value='<?php if ($ubig_row) { echo htmlspecialchars($ubig_row['ubig_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUbigNombre' name='txtUbigNombre' value='<?php if ($ubig_row) { echo htmlspecialchars($ubig_row['ubig_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr hidden><td><label for='txtUbigEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtUbigEstado' name='txtUbigEstado' value='<?php if ($ubig_row) { echo $ubig_row['ubig_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtUbigEstado' name='txtUbigEstado' value='<?php if ($ubig_row) { echo $ubig_row['ubig_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -91,23 +92,23 @@ function ubig_validar() {
 	var ubig_nombre = $(ubig_upd).find('#txtUbigNombre').val();
 
 	if (ubig_codigo == '') {
-		showMessageWarning('Ingrese <b>codigo</b>', 'txtUbigCodigo');
+		alert('Ingrese codigo');
 		return false;
 	}
 	if (!isInteger(ubig_dpto_cod)) {
-		showMessageWarning('Ingrese <b>dpto cod</b> válido', 'txtUbigDptoCod');
+		alert('Ingrese dpto cod válido');
 		return false;
 	}
 	if (!isInteger(ubig_prov_cod)) {
-		showMessageWarning('Ingrese <b>prov cod</b> válido', 'txtUbigProvCod');
+		alert('Ingrese prov cod válido');
 		return false;
 	}
 	if (!isInteger(ubig_dist_cod)) {
-		showMessageWarning('Ingrese <b>dist cod</b> válido', 'txtUbigDistCod');
+		alert('Ingrese dist cod válido');
 		return false;
 	}
 	if (ubig_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de ubigeo', 'txtUbigNombre');
+		alert('Ingrese una nombre válida de ubigeo');
 		return false;
 	}
 	return true;

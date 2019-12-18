@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/recomendacionDAL.php';
 	$rec_dal = new recomendacionDAL();
 	$b = GetStringParam('b');
 	$rec_list = $rec_dal->listar($b);
 ?>
-<table id='tblrecomendacion' class='table table-responsive'>
+<table id='tblrecomendacion' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Lugar turístico</th>

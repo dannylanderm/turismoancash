@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/personaDAL.php';
 	$pers_dal = new personaDAL();
 	$b = GetStringParam('b');
 	$pers_list = $pers_dal->listar($b);
 ?>
-<table id='tblpersona' class='table table-responsive'>
+<table id='tblpersona' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Ap paterno</th>

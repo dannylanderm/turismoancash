@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../includes/cercaniaDAL.php';
 
 	if (isset($_POST['cerca_lug_id'], $_POST['cerca_sitio_id'])){

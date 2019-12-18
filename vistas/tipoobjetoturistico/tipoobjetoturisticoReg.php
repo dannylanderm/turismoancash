@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tipoobj_reg', 'tipoobjetoturistico/tipoobjetoturistico.php');
 ?>
 <form id='frmTipoobjetoturisticoReg' method='post'>
@@ -15,7 +15,7 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTipoobjNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipoobjNombre' name='txtTipoobjNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipoobjNombre' name='txtTipoobjNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -54,7 +54,7 @@ function tipoobj_validar() {
 	var tipoobj_nombre = $(tipoobj_reg).find('#txtTipoobjNombre').val();
 
 	if (tipoobj_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de objeto turístico', 'txtTipoobjNombre');
+		alert('Ingrese una nombre válida de tipo de objeto turístico');
 		return false;
 	}
 	return true;

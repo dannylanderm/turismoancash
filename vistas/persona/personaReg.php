@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('pers_reg', 'persona/persona.php');
 ?>
 <form id='frmPersonaReg' method='post'>
@@ -15,16 +15,16 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtPersApPaterno'>Ap paterno:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtPersApPaterno' name='txtPersApPaterno' maxlength='30' placeholder='Ingrese ap paterno'/></td>
+		<td><input type='text' class='form-control txt250' id='txtPersApPaterno' name='txtPersApPaterno' maxlength='30' placeholder='Ingrese ap paterno'/></td>
 	</tr>
 	<tr><td><label for='txtPersApMaterno'>Ap materno:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtPersApMaterno' name='txtPersApMaterno' maxlength='30' placeholder='Ingrese ap materno'/></td>
+		<td><input type='text' class='form-control txt250' id='txtPersApMaterno' name='txtPersApMaterno' maxlength='30' placeholder='Ingrese ap materno'/></td>
 	</tr>
 	<tr><td><label for='txtPersNombres'>Nombres:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtPersNombres' name='txtPersNombres' maxlength='30' placeholder='Ingrese nombres'/></td>
+		<td><input type='text' class='form-control txt250' id='txtPersNombres' name='txtPersNombres' maxlength='30' placeholder='Ingrese nombres'/></td>
 	</tr>
 	<tr><td><label for='txtPersCorreo'>Correo:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtPersCorreo' name='txtPersCorreo' maxlength='50' placeholder='Ingrese correo'/></td>
+		<td><input type='text' class='form-control txt250' id='txtPersCorreo' name='txtPersCorreo' maxlength='50' placeholder='Ingrese correo'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -72,19 +72,19 @@ function pers_validar() {
 	var pers_correo = $(pers_reg).find('#txtPersCorreo').val();
 
 	if (pers_ap_paterno == '') {
-		showMessageWarning('Ingrese una <b>ap paterno</b> válida', 'txtPersApPaterno');
+		alert('Ingrese una ap paterno válida');
 		return false;
 	}
 	if (pers_ap_materno == '') {
-		showMessageWarning('Ingrese una <b>ap materno</b> válida', 'txtPersApMaterno');
+		alert('Ingrese una ap materno válida');
 		return false;
 	}
 	if (pers_nombres == '') {
-		showMessageWarning('Ingrese una <b>nombres</b> válida de persona', 'txtPersNombres');
+		alert('Ingrese una nombres válida de persona');
 		return false;
 	}
 	if (!isEmail(pers_correo)) {
-		showMessageWarning('Ingrese valor de <b>correo</b> válido', 'txtPersCorreo');
+		alert('Ingrese valor de correo válido');
 		return false;
 	}
 	return true;

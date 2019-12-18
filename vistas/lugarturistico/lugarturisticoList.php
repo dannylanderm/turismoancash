@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
 	$b = GetStringParam('b');
 	$lug_list = $lug_dal->listar($b);
 ?>
-<table id='tbllugarturistico' class='table table-responsive'>
+<table id='tbllugarturistico' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Nombre</th>
@@ -55,6 +55,7 @@
 	</tr>
 	<?php } ?>
 </table>
+<hr>
 <script>
 	function lug_editar(lug_id) {
 		performLoad('lugarturistico/lugarturisticoUpd.php?lug_id=' + lug_id);

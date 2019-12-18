@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
 ?>
 <div id='frmCategorialugar' class='txt_center'>
@@ -18,8 +17,8 @@
 </div>
 </div>
 <hr class='separator'/>
-<div class='txt_center bpad15'>
-	<div id='datos' class='centered pad8 rpad8' ></div>
+<div class='listform_body bpad15'>
+	<div id='datos' class='centered'></div>
 </div>
 </div>
 <script>

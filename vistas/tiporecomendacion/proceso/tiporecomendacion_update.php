@@ -2,7 +2,8 @@
 	session_start();
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../../entidades/tiporecomendacion.php';
 	include_once '../../../includes/tiporecomendacionDAL.php';
 

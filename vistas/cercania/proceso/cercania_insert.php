@@ -3,7 +3,8 @@
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
 	$usu_id = $_SESSION['auth.usu_id'];
-
+?>
+<?php
 	include_once '../../../entidades/cercania.php';
 	include_once '../../../includes/cercaniaDAL.php';
 
@@ -22,3 +23,4 @@
 	} else {
 		echo 'Ingrese datos validos';
 	}
+?>

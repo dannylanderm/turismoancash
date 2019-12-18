@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/tipositioDAL.php';
 	$tipositio_dal = new tipositioDAL();
 	$b = GetStringParam('b');
 	$tipositio_list = $tipositio_dal->listar($b);
 ?>
-<table id='tbltipositio' class='table table-responsive'>
+<table id='tbltipositio' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Nombre</th>

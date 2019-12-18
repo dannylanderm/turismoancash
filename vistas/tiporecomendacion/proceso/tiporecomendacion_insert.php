@@ -3,7 +3,8 @@
 	include_once '../../../includes/AppUtils.php';
 	CheckLoginAccess();
 	$usu_id = $_SESSION['auth.usu_id'];
-
+?>
+<?php
 	include_once '../../../entidades/tiporecomendacion.php';
 	include_once '../../../includes/tiporecomendacionDAL.php';
 
@@ -20,3 +21,4 @@
 	} else {
 		echo 'Ingrese datos validos';
 	}
+?>

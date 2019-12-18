@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tipoobj_upd', 'tipoobjetoturistico/tipoobjetoturistico.php');
-
+?>
+<?php
 	include_once '../../includes/tipoobjetoturisticoDAL.php';
 	$tipoobj_dal = new tipoobjetoturisticoDAL();
 	$tipoobj_id = GetNumericParam('tipoobj_id');
@@ -21,10 +22,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTipoobjNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipoobjNombre' name='txtTipoobjNombre' value='<?php if ($tipoobj_row) { echo htmlspecialchars($tipoobj_row['tipoobj_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipoobjNombre' name='txtTipoobjNombre' value='<?php if ($tipoobj_row) { echo htmlspecialchars($tipoobj_row['tipoobj_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr hidden><td><label for='txtTipoobjEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipoobjEstado' name='txtTipoobjEstado' value='<?php if ($tipoobj_row) { echo $tipoobj_row['tipoobj_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipoobjEstado' name='txtTipoobjEstado' value='<?php if ($tipoobj_row) { echo $tipoobj_row['tipoobj_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -67,7 +68,7 @@ function tipoobj_validar() {
 	var tipoobj_nombre = $(tipoobj_upd).find('#txtTipoobjNombre').val();
 
 	if (tipoobj_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de objeto turístico', 'txtTipoobjNombre');
+		alert('Ingrese una nombre válida de tipo de objeto turístico');
 		return false;
 	}
 	return true;

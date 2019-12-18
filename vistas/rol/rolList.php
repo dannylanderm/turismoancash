@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/rolDAL.php';
 	$rol_dal = new rolDAL();
 	$b = GetStringParam('b');
 	$rol_list = $rol_dal->listar($b);
 ?>
-<table id='tblrol' class='table table-responsive'>
+<table id='tblrol' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Nombre</th>

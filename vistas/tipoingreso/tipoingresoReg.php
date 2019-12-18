@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tipoing_reg', 'tipoingreso/tipoingreso.php');
 ?>
 <form id='frmTipoingresoReg' method='post'>
@@ -15,7 +15,7 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTipoingNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTipoingNombre' name='txtTipoingNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTipoingNombre' name='txtTipoingNombre' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -54,7 +54,7 @@ function tipoing_validar() {
 	var tipoing_nombre = $(tipoing_reg).find('#txtTipoingNombre').val();
 
 	if (tipoing_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de ingreso', 'txtTipoingNombre');
+		alert('Ingrese una nombre válida de tipo de ingreso');
 		return false;
 	}
 	return true;

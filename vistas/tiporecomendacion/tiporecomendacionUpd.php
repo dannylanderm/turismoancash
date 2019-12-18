@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('tiporec_upd', 'tiporecomendacion/tiporecomendacion.php');
-
+?>
+<?php
 	include_once '../../includes/tiporecomendacionDAL.php';
 	$tiporec_dal = new tiporecomendacionDAL();
 	$tiporec_id = GetNumericParam('tiporec_id');
@@ -21,10 +22,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtTiporecNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTiporecNombre' name='txtTiporecNombre' value='<?php if ($tiporec_row) { echo htmlspecialchars($tiporec_row['tiporec_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTiporecNombre' name='txtTiporecNombre' value='<?php if ($tiporec_row) { echo htmlspecialchars($tiporec_row['tiporec_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr hidden><td><label for='txtTiporecEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtTiporecEstado' name='txtTiporecEstado' value='<?php if ($tiporec_row) { echo $tiporec_row['tiporec_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtTiporecEstado' name='txtTiporecEstado' value='<?php if ($tiporec_row) { echo $tiporec_row['tiporec_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -67,7 +68,7 @@ function tiporec_validar() {
 	var tiporec_nombre = $(tiporec_upd).find('#txtTiporecNombre').val();
 
 	if (tiporec_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de tipo de recomendación', 'txtTiporecNombre');
+		alert('Ingrese una nombre válida de tipo de recomendación');
 		return false;
 	}
 	return true;

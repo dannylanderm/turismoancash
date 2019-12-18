@@ -1,20 +1,23 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('sitio_upd', 'sitio/sitio.php');
-
+?>
+<?php
 	include_once '../../includes/sitioDAL.php';
 	$sitio_dal = new sitioDAL();
 	$sitio_id = GetNumericParam('sitio_id');
 
 	$sitio_row = $sitio_dal->getByID($sitio_id);
-
+?>
+<?php
 	include_once '../../includes/tipositioDAL.php';
 	$tipositio_dal = new tipositioDAL();
-
+?>
+<?php
 	include_once '../../includes/ubigeoDAL.php';
 	$ubig_dal = new ubigeoDAL();
 ?>
@@ -27,12 +30,13 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtSitioNombre'>Nombre:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioNombre' name='txtSitioNombre' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioNombre' name='txtSitioNombre' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_nombre']); } ?>' maxlength='50' placeholder='Ingrese nombre'/></td>
 	</tr>
 	<tr><td><label for='txtSitioTipositioID'>Tipo de sitio:</label></td>
-		<td><select class='form-control txt200' id='txtSitioTipositioID' name='txtSitioTipositioID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtSitioTipositioID' name='txtSitioTipositioID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $tipositio_list = $tipositio_dal->listarcbo($sitio_row['sitio_tipositio_id']);  foreach($tipositio_list as $row) { ?>
+			<?php $tipositio_list = $tipositio_dal->listarcbo($sitio_row['sitio_tipositio_id']); ?>
+			<?php foreach($tipositio_list as $row) { ?>
 				<option value='<?php echo $row['tipositio_id']; ?>'
 					<?php echo ($row['tipositio_id'] == $sitio_row['tipositio_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['tipositio_nombre'];  ?>
@@ -42,24 +46,25 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtSitioLatitudGeo'>Latitud geo:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioLatitudGeo' name='txtSitioLatitudGeo' value='<?php if ($sitio_row) { echo $sitio_row['sitio_latitud_geo']; } ?>' maxlength='16' placeholder='Ingrese latitud geo'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioLatitudGeo' name='txtSitioLatitudGeo' value='<?php if ($sitio_row) { echo $sitio_row['sitio_latitud_geo']; } ?>' maxlength='16' placeholder='Ingrese latitud geo'/></td>
 	</tr>
 	<tr><td><label for='txtSitioLongitudGeo'>Longitud geo:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioLongitudGeo' name='txtSitioLongitudGeo' value='<?php if ($sitio_row) { echo $sitio_row['sitio_longitud_geo']; } ?>' maxlength='16' placeholder='Ingrese longitud geo'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioLongitudGeo' name='txtSitioLongitudGeo' value='<?php if ($sitio_row) { echo $sitio_row['sitio_longitud_geo']; } ?>' maxlength='16' placeholder='Ingrese longitud geo'/></td>
 	</tr>
 	<tr><td><label for='txtSitioCelular'>Celular:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioCelular' name='txtSitioCelular' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_celular']); } ?>' maxlength='50' placeholder='Ingrese celular'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioCelular' name='txtSitioCelular' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_celular']); } ?>' maxlength='50' placeholder='Ingrese celular'/></td>
 	</tr>
 	<tr><td><label for='txtSitioTelefono'>Telefono:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioTelefono' name='txtSitioTelefono' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_telefono']); } ?>' maxlength='50' placeholder='Ingrese telefono'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioTelefono' name='txtSitioTelefono' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_telefono']); } ?>' maxlength='50' placeholder='Ingrese telefono'/></td>
 	</tr>
 	<tr><td><label for='txtSitioWebpage'>Webpage:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioWebpage' name='txtSitioWebpage' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_webpage']); } ?>' maxlength='100' placeholder='Ingrese webpage'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioWebpage' name='txtSitioWebpage' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_webpage']); } ?>' maxlength='100' placeholder='Ingrese webpage'/></td>
 	</tr>
 	<tr><td><label for='txtSitioUbigID'>Ubigeo:</label></td>
-		<td><select class='form-control txt200' id='txtSitioUbigID' name='txtSitioUbigID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtSitioUbigID' name='txtSitioUbigID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $ubig_list = $ubig_dal->listarcbo($sitio_row['sitio_ubig_id']);  foreach($ubig_list as $row) { ?>
+			<?php $ubig_list = $ubig_dal->listarcbo($sitio_row['sitio_ubig_id']); ?>
+			<?php foreach($ubig_list as $row) { ?>
 				<option value='<?php echo $row['ubig_id']; ?>'
 					<?php echo ($row['ubig_id'] == $sitio_row['ubig_id']) ? 'selected' : '';  ?>>
 					<?php echo $row['ubig_nombre'];  ?>
@@ -69,16 +74,16 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtSitioDireccion'>Direccion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioDireccion' name='txtSitioDireccion' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_direccion']); } ?>' maxlength='100' placeholder='Ingrese direccion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioDireccion' name='txtSitioDireccion' value='<?php if ($sitio_row) { echo htmlspecialchars($sitio_row['sitio_direccion']); } ?>' maxlength='100' placeholder='Ingrese direccion'/></td>
 	</tr>
 	<tr><td><label for='txtSitioCalificacion'>Calificacion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioCalificacion' name='txtSitioCalificacion' value='<?php if ($sitio_row) { echo $sitio_row['sitio_calificacion']; } ?>'  placeholder='Ingrese calificacion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioCalificacion' name='txtSitioCalificacion' value='<?php if ($sitio_row) { echo $sitio_row['sitio_calificacion']; } ?>'  placeholder='Ingrese calificacion'/></td>
 	</tr>
 	<tr><td><label for='txtSitioSituacion'>Situacion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioSituacion' name='txtSitioSituacion' value='<?php if ($sitio_row) { echo $sitio_row['sitio_situacion']; } ?>'  placeholder='Ingrese situacion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioSituacion' name='txtSitioSituacion' value='<?php if ($sitio_row) { echo $sitio_row['sitio_situacion']; } ?>'  placeholder='Ingrese situacion'/></td>
 	</tr>
 	<tr hidden><td><label for='txtSitioEstado'>Estado:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtSitioEstado' name='txtSitioEstado' value='<?php if ($sitio_row) { echo $sitio_row['sitio_estado']; } ?>'  placeholder='Ingrese estado'/></td>
+		<td><input type='text' class='form-control txt250' id='txtSitioEstado' name='txtSitioEstado' value='<?php if ($sitio_row) { echo $sitio_row['sitio_estado']; } ?>'  placeholder='Ingrese estado'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -151,47 +156,47 @@ function sitio_validar() {
 	var sitio_situacion = $(sitio_upd).find('#txtSitioSituacion').val();
 
 	if (sitio_nombre == '') {
-		showMessageWarning('Ingrese una <b>nombre</b> válida de sitio', 'txtSitioNombre');
+		alert('Ingrese una nombre válida de sitio');
 		return false;
 	}
 	if (!(isInteger(sitio_tipositio_id) && sitio_tipositio_id > 0)) {
-		showMessageWarning('Seleccione <b>tipo de sitio</b>', 'txtSitioTipositioID');
+		alert('Seleccione tipo de sitio');
 		return false;
 	}
 	if (!isNumeric(sitio_latitud_geo)) {
-		showMessageWarning('Ingrese <b>latitud geo</b> válido', 'txtSitioLatitudGeo');
+		alert('Ingrese latitud geo válido');
 		return false;
 	}
 	if (!isNumeric(sitio_longitud_geo)) {
-		showMessageWarning('Ingrese <b>longitud geo</b> válido', 'txtSitioLongitudGeo');
+		alert('Ingrese longitud geo válido');
 		return false;
 	}
 	if (sitio_celular == '') {
-		showMessageWarning('Ingrese una <b>celular</b> válida', 'txtSitioCelular');
+		alert('Ingrese una celular válida');
 		return false;
 	}
 	if (sitio_telefono == '') {
-		showMessageWarning('Ingrese una <b>telefono</b> válida', 'txtSitioTelefono');
+		alert('Ingrese una telefono válida');
 		return false;
 	}
 	if (sitio_webpage == '') {
-		showMessageWarning('Ingrese una <b>webpage</b> válida', 'txtSitioWebpage');
+		alert('Ingrese una webpage válida');
 		return false;
 	}
 	if (!(isInteger(sitio_ubig_id) && sitio_ubig_id > 0)) {
-		showMessageWarning('Seleccione <b>ubigeo</b>', 'txtSitioUbigID');
+		alert('Seleccione ubigeo');
 		return false;
 	}
 	if (sitio_direccion == '') {
-		showMessageWarning('Ingrese una <b>direccion</b> válida', 'txtSitioDireccion');
+		alert('Ingrese una direccion válida');
 		return false;
 	}
 	if (!isTinyint(sitio_calificacion)) {
-		showMessageWarning('Ingrese un valor de <b>calificacion</b> válido', 'txtSitioCalificacion');
+		alert('Ingrese un valor de calificacion válido');
 		return false;
 	}
 	if (!isTinyint(sitio_situacion)) {
-		showMessageWarning('Ingrese un valor de <b>situacion</b> válido', 'txtSitioSituacion');
+		alert('Ingrese un valor de situacion válido');
 		return false;
 	}
 	return true;

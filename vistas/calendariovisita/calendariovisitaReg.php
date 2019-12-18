@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	$parent = ReceiveParent('calend_reg', 'calendariovisita/calendariovisita.php');
-
+?>
+<?php
 	include_once '../../includes/lugarturisticoDAL.php';
 	$lug_dal = new lugarturisticoDAL();
 ?>
@@ -18,9 +19,10 @@
 <hr class='separator'/>
 <table class='form_data'>
 	<tr><td><label for='txtCalendLugID'>Lugar turístico:</label></td>
-		<td><select class='form-control txt200' id='txtCalendLugID' name='txtCalendLugID'> <!-- maxlength='10' -->
+		<td><select class='form-control txt250'  id='txtCalendLugID' name='txtCalendLugID'> <!-- maxlength='10' -->
 			<option value = '0'>(Seleccione)</option>
-			<?php $lug_list = $lug_dal->listarcbo();  foreach($lug_list as $row) { ?>
+			<?php $lug_list = $lug_dal->listarcbo(); ?>
+			<?php foreach($lug_list as $row) { ?>
 				<option value='<?php echo $row['lug_id']; ?>'>
 					<?php echo $row['lug_nombre'];  ?>
 				</option>
@@ -29,22 +31,22 @@
 		</td>
 	</tr>
 	<tr><td><label for='txtCalendNro'>Nro:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCalendNro' name='txtCalendNro' maxlength='10' placeholder='Ingrese nro'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCalendNro' name='txtCalendNro' maxlength='10' placeholder='Ingrese nro'/></td>
 	</tr>
 	<tr><td><label for='txtCalendFechaIni'>Fecha ini:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCalendFechaIni' name='txtCalendFechaIni'  placeholder='Ingrese fecha ini'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCalendFechaIni' name='txtCalendFechaIni'  placeholder='Ingrese fecha ini'/></td>
 	</tr>
 	<tr><td><label for='txtCalendFechaFin'>Fecha fin:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCalendFechaFin' name='txtCalendFechaFin'  placeholder='Ingrese fecha fin'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCalendFechaFin' name='txtCalendFechaFin'  placeholder='Ingrese fecha fin'/></td>
 	</tr>
 	<tr><td><label for='txtCalendHoraIni'>Hora ini:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCalendHoraIni' name='txtCalendHoraIni'  placeholder='Ingrese hora ini'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCalendHoraIni' name='txtCalendHoraIni'  placeholder='Ingrese hora ini'/></td>
 	</tr>
 	<tr><td><label for='txtCalendHoraFin'>Hora fin:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCalendHoraFin' name='txtCalendHoraFin'  placeholder='Ingrese hora fin'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCalendHoraFin' name='txtCalendHoraFin'  placeholder='Ingrese hora fin'/></td>
 	</tr>
 	<tr><td><label for='txtCalendSituacion'>Situacion:</label></td>
-		<td><input type='text' class='form-control txt200' id='txtCalendSituacion' name='txtCalendSituacion'  placeholder='Ingrese situacion'/></td>
+		<td><input type='text' class='form-control txt250' id='txtCalendSituacion' name='txtCalendSituacion'  placeholder='Ingrese situacion'/></td>
 	</tr>
 </table>
 <hr class='separator'/>
@@ -101,23 +103,23 @@ function calend_validar() {
 	var calend_situacion = $(calend_reg).find('#txtCalendSituacion').val();
 
 	if (!(isInteger(calend_lug_id) && calend_lug_id > 0)) {
-		showMessageWarning('Seleccione <b>lugar turístico</b>', 'txtCalendLugID');
+		alert('Seleccione lugar turístico');
 		return false;
 	}
 	if (!isInteger(calend_nro)) {
-		showMessageWarning('Ingrese <b>nro</b> válido', 'txtCalendNro');
+		alert('Ingrese nro válido');
 		return false;
 	}
 	if (!isDate(calend_fecha_ini)) {
-		showMessageWarning('Ingrese una <b>fecha ini</b> válida', 'txtCalendFechaIni');
+		alert('Ingrese una fecha ini válida');
 		return false;
 	}
 	if (!isDate(calend_fecha_fin)) {
-		showMessageWarning('Ingrese una <b>fecha fin</b> válida', 'txtCalendFechaFin');
+		alert('Ingrese una fecha fin válida');
 		return false;
 	}
 	if (!isTinyint(calend_situacion)) {
-		showMessageWarning('Ingrese un valor de <b>situacion</b> válido', 'txtCalendSituacion');
+		alert('Ingrese un valor de situacion válido');
 		return false;
 	}
 	return true;

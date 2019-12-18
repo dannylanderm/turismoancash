@@ -1,15 +1,15 @@
 <?php
 	session_start();
 	include_once '../../includes/AppUtils.php';
-	
 	CheckLoginAccess();
-
+?>
+<?php
 	include_once '../../includes/objetoturisticoDAL.php';
 	$obj_dal = new objetoturisticoDAL();
 	$b = GetStringParam('b');
 	$obj_list = $obj_dal->listar($b);
 ?>
-<table id='tblobjetoturistico' class='table table-responsive'>
+<table id='tblobjetoturistico' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
 		<th>Nombre</th>
