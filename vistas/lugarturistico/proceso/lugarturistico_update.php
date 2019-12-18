@@ -18,7 +18,7 @@
 		$foto_fullpath              = '';
 		$lug_foto_contenido_deleted = $_POST['lug_foto_contenido_deleted'];
 		if (IssetPostFile('lug_foto')) {
-			$foto_fullpath = strtolower(IssetPostFile('lug_foto') ? "archivos/foto_{$lug_id}.".getPostFileExt('lug_foto') : '');
+			$foto_fullpath = strtolower(IssetPostFile('lug_foto') ? "archivos/lugares/foto_{$lug_id}.".getPostFileExt('lug_foto') : '');
 			move_uploaded_file($_FILES['lug_foto']['tmp_name'], "../../../$foto_fullpath");
 		}
 		
