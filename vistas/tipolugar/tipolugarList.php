@@ -12,8 +12,8 @@
 <table id='tbltipolugar' class='table table-responsive txt_left'>
 	<tr>
 		<th>ID</th>
-		<th>Tipo de lugar</th>
 		<th>Categoría</th>
+		<th>Tipo de lugar</th>
 		<th hidden>Estado</th>
 		<th>Editar</th>
 		<th>Borrar</th>
@@ -21,8 +21,8 @@
 	<?php foreach($tipolug_list as $row) { ?>
 	<tr>
 		<td class='txt_center'><?php echo pad($row['tipolug_id']); ?></td>
-		<td><?php echo $row['tipolug_nombre']; ?></td>
 		<td><?php echo $row['catlug_nombre']; ?></td>
+		<td><?php echo $row['tipolug_nombre']; ?></td>
 		<td hidden><?php echo $row['tipolug_estado']; ?></td>
 		<td class='txt_center'><a href='#' class='btn btn-info' onclick="tipolug_editar('<?php echo $row['tipolug_id']; ?>');"><img src='../resources/img/edit.png' style='width: 16px;'></a></td>
 		<td class='txt_center'><a href='#'  class='btn btn-danger' onclick="tipolug_borrar('<?php echo $row['tipolug_id']; ?>');"><img src='../resources/img/delete.png' style='width: 16px;'></a></td>

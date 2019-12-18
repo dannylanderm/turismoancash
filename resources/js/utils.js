@@ -1,3 +1,11 @@
+// Funcion mostrar mapa
+function iniciarMapa(div_id, coords) {
+    return new google.maps.Map(document.getElementById(div_id), {
+        zoom  : 10,
+        center: coords
+    });
+}
+
 // funciones clase string:
 // <HACK> para admitir la funcion trim() en IE (8 y anteriores)
 if (typeof String.prototype.trim !== 'function') {
@@ -185,7 +193,7 @@ function getYear(fecha) {
 
 function formatDateAM(date) {
     return pad(date.getDate(), 2) + '/' + pad(date.getMonth() + 1, 2) + '/' + date.getFullYear()
-           + " " + pad(date.getHours()) + ":" + pad(date.getMinutes(), 2) + ":" + pad(date.getSeconds(), 2);
+        + " " + pad(date.getHours()) + ":" + pad(date.getMinutes(), 2) + ":" + pad(date.getSeconds(), 2);
 }
 
 function formatYMD(date) {
@@ -226,6 +234,7 @@ function isDate(campo) {
     }
     return true;
 }
+
 function jsonParse(str) {
     try {
         if (str !== 'null') {

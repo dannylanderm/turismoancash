@@ -1,4 +1,8 @@
 <?php
+	define('APP_TOKEN', 'S3IxOhTXoNuddwV9lUiirlkSQuuGmkfU');
+	// token md5: 86199ec397e4afe5e8bb67aa82ba429e
+	
+	
 	// 1: Pendiente, 2: Aceptado, 3: Atendido, 4: Rechazado
 	
 	define('MSG_PENDIENTE', 1);
@@ -420,5 +424,4 @@
 		$dir = $coord['dir'];
 		return "{$deg}°{$min}'{$sec}\"{$dir}";
 	}
-	
 	

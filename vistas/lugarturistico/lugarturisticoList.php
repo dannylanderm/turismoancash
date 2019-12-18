@@ -28,7 +28,7 @@
     <!-- <th>Resenia</th>-->
     <th hidden>Registrado</th>
     <th hidden>Estado</th>
-    <!-- <th>Editar</th>-->
+    <th>Editar</th>
     <th>Borrar</th>
 </tr>
 <?php foreach ($lug_list as $row) { ?>
@@ -50,10 +50,10 @@
         <!-- <td>--><?php //echo $row['lug_resenia']; ?><!--</td>-->
         <td class='txt_center' hidden><?php echo $row['lug_fecha_reg']; ?></td>
         <td hidden><?php echo $row['lug_estado']; ?></td>
-        <!--<td class='txt_center'>
+        <td class='txt_center'>
             <a href='#' class='btn btn-info' onclick="lug_editar('<?php echo $row['lug_id']; ?>');">
                 <img src='../resources/img/edit.png' style='width: 16px;' alt=''></a>
-        </td>-->
+        </td>
         <td class='txt_center'>
             <a href='#' class='btn btn-danger' onclick="lug_borrar('<?php echo $row['lug_id']; ?>');">
                 <img src='../resources/img/delete.png' style='width: 16px;'></a>
@@ -64,7 +64,7 @@
 <hr>
 <script>
     function lug_editar(lug_id) {
-        performLoad('lugarturistico/lugarturisticoUpd.php?lug_id=' + lug_id);
+        performLoad('lugarturistico/lugarturisticoReg.php?lug_id=' + lug_id);
     }
 
     function lug_borrar(lug_id) {

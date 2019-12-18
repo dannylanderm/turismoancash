@@ -29,6 +29,7 @@
     <script src="../resources/js/main.js"></script>
     <script src="../resources/js/utils.js"></script>
     <script src="../resources/js/jquery-ui.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&sensor=false"></script>
 </head>
 <body>
 <div id='menu'></div>

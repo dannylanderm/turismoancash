@@ -14,16 +14,16 @@
 		<th>ID</th>
 		<th>Nombre</th>
 		<th hidden>Estado</th>
-		<th>Editar</th>
-		<th>Borrar</th>
+		<th hidden>Editar</th>
+		<th hidden>Borrar</th>
 	</tr>
 	<?php foreach($rol_list as $row) { ?>
 	<tr>
 		<td class='txt_center'><?php echo pad($row['rol_id']); ?></td>
 		<td><?php echo $row['rol_nombre']; ?></td>
 		<td hidden><?php echo $row['rol_estado']; ?></td>
-		<td class='txt_center'><a href='#' class='btn btn-info' onclick="rol_editar('<?php echo $row['rol_id']; ?>');"><img src='../resources/img/edit.png' style='width: 16px;'></a></td>
-		<td class='txt_center'><a href='#'  class='btn btn-danger' onclick="rol_borrar('<?php echo $row['rol_id']; ?>');"><img src='../resources/img/delete.png' style='width: 16px;'></a></td>
+		<td hidden class='txt_center'><a href='#' class='btn btn-info' onclick="rol_editar('<?php echo $row['rol_id']; ?>');"><img src='../resources/img/edit.png' style='width: 16px;'></a></td>
+		<td hidden class='txt_center'><a href='#'  class='btn btn-danger' onclick="rol_borrar('<?php echo $row['rol_id']; ?>');"><img src='../resources/img/delete.png' style='width: 16px;'></a></td>
 	</tr>
 	<?php } ?>
 </table>

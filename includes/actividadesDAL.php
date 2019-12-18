@@ -21,6 +21,12 @@
 			$rs = $mysql->ejecutar("CALL pa_Actividades_list('$b');");
 			return $mysql->rsToArray($rs);
 		}
+		
+		public function listarByLugar($lugar = '', $b = '') {
+			$mysql = new Conexion();
+			$rs = $mysql->ejecutar("CALL pa_actividades_listByLugar('$lugar', '$b');");
+			return $mysql->rsToArray($rs);
+		}
 
 		public function registrar(actividades $activ) {
 			$mysql = new Conexion(false);

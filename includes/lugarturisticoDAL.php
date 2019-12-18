@@ -21,6 +21,12 @@
 			$rs = $mysql->ejecutar("CALL pa_Lugarturistico_list('$b', '$lug_estado');");
 			return $mysql->rsToArray($rs);
 		}
+		
+		public function m_listar($b = '', $lug_estado = 1) {
+			$mysql = new Conexion();
+			$rs = $mysql->ejecutar("CALL pa_Lugarturistico_list_m('$b', '$lug_estado');");
+			return $mysql->rsToArray($rs);
+		}
 
 		public function registrar(lugarturistico $lug) {
 			$mysql = new Conexion(false);
