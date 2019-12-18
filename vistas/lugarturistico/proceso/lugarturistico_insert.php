@@ -34,7 +34,7 @@
 		$lug_id = $lug_dal->registrar($lug);
 		
 		if ($lug_id) {
-			$foto_fullpath = strtolower(IssetPostFile('lug_foto') ? "archivos/foto_{$lug_id}.".getPostFileExt('lug_foto') : '');
+			$foto_fullpath = strtolower(IssetPostFile('lug_foto') ? "archivos/lugares/foto_{$lug_id}.".getPostFileExt('lug_foto') : '');
 			if (IssetPostFile('lug_foto')) {
 				move_uploaded_file($_FILES['lug_foto']['tmp_name'], "../../../$foto_fullpath");
 			}

@@ -29,6 +29,12 @@
 			return $mysql->rsToArray($rs);
 		}
 		
+		public function listarAll($b = '') {
+			$mysql = new Conexion();
+			$rs    = $mysql->ejecutar("CALL pa_usuario_listAll('$b');");
+			return $mysql->rsToArray($rs);
+		}
+		
 		public function registrar(usuario $usu) {
 			$mysql = new Conexion(false);
 			$mysql->conectar();
@@ -52,7 +58,6 @@
 					'$usu->usu_id',
 					'$usu->pers_id',
 					'$usu->nombre',
-					'$usu->contrasena',
 					'$usu->rol_id',
 					'$usu->fecha_acceso');");
 			return $rs;
